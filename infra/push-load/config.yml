@@ -1,0 +1,29 @@
+# Ready config: Kubespray images → containerd on vm1/vm2/vm3
+# Based on https://github.com/sinae99/pull-save-push-load
+# Usage: ansible-playbook playbooks/push-load.yml -e "@config.yml"
+
+target_hosts:
+  - name: vm1
+    ip: 37.32.15.242
+  - name: vm2
+    ip: 37.32.15.158
+  - name: vm3
+    ip: 37.32.12.103
+
+mode: "images"
+skip_pull: true
+remote_user: "ubuntu"
+tarball_dir: "/tmp/docker-push-load"
+
+docker_images:
+  - registry.k8s.io/kube-proxy:v1.32.8
+  - registry.k8s.io/pause:3.10
+  - registry.k8s.io/coredns/coredns:v1.11.3
+  - registry.k8s.io/dns/k8s-dns-node-cache:1.25.0
+  - quay.io/calico/node:v3.29.5
+  - quay.io/calico/cni:v3.29.5
+  - quay.io/calico/kube-controllers:v3.29.5
+  - registry.k8s.io/kube-apiserver:v1.32.8
+  - registry.k8s.io/kube-controller-manager:v1.32.8
+  - registry.k8s.io/kube-scheduler:v1.32.8
+  - registry.k8s.io/cpa/cluster-proportional-autoscaler:v1.8.8

@@ -1,0 +1,86 @@
+name: geoapi
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - ".github/workflows/geoapi.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/${{ github.repository_owner }}/geoapi
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Pytest
+        run: pytest -q
+
+  build-push:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:latest
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: azure/setup-kubectl@v4
+        with:
+          version: "v1.30.0"
+
+      - name: Setup kubeconfig
+        env:
+          KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG }}
+        run: |
+          mkdir -p ~/.kube
+          printf '%s\n' "$KUBECONFIG_CONTENT" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Apply manifests
+        run: |
+          kubectl apply -f api/k8s/namespace.yaml
+          kubectl apply -f api/k8s/secret.yaml
+          kubectl apply -f api/k8s/secret-ghcr.yaml
+          kubectl apply -f api/k8s/deployment.yaml
+          kubectl apply -f api/k8s/service.yaml
+          kubectl apply -f api/k8s/servicemonitor.yaml
+          kubectl -n geoapi set image deploy/geoapi geoapi=${{ env.IMAGE }}:${{ github.sha }}
+          kubectl -n geoapi rollout status deploy/geoapi --timeout=120s

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoapi
+  namespace: geoapi
+  labels:
+    app: geoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geoapi
+  template:
+    metadata:
+      labels:
+        app: geoapi
+    spec:
+      imagePullSecrets:
+        - name: ghcr-cred
+      hostAliases:
+        - ip: "208.95.112.1"
+          hostnames:
+            - "ip-api.com"
+      containers:
+        - name: geoapi
+          image: ghcr.io/sinae99/geoapi:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: geoapi-db
+                  key: DATABASE_URL
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

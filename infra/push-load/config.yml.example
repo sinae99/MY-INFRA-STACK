@@ -1,0 +1,21 @@
+# Copy to config.yml and customize.
+# Usage: ansible-playbook playbooks/push-load.yml -e "@config.yml"
+
+target_hosts:
+  - name: vm1
+    ip: 192.168.1.100
+  - name: vm2
+    ip: 192.168.1.101
+  - name: vm3
+    ip: 192.168.1.102
+
+mode: "images"  # or "tarballs" or "mixed"
+
+# tarballs_dir: "/path/to/docker-images"
+
+docker_images:
+  - registry.k8s.io/pause:3.10
+
+skip_pull: true
+tarball_dir: "/tmp/docker-push-load"
+remote_user: "ubuntu"

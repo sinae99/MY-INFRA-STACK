@@ -1,0 +1,4 @@
+# Defaults; override via config.yml (-e "@config.yml").
+push_load_skip_pull: true
+push_load_tarball_dir: "/tmp/docker-push-load"
+push_load_remote_user: "ubuntu"

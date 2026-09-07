@@ -1,0 +1,32 @@
+NAMESPACE            NAME                                                     READY   STATUS    RESTARTS      AGE
+cnpg-system          cnpg-controller-manager-8644bdffb8-qtf6z                 1/1     Running   0             12h
+geoapi               geoapi-84ff79f889-jlhjc                                  1/1     Running   0             12h
+kube-system          calico-kube-controllers-dbf6dc49-wxbsh                   1/1     Running   0             28h
+kube-system          calico-node-pr5sv                                        1/1     Running   0             28h
+kube-system          calico-node-vnht6                                        1/1     Running   0             28h
+kube-system          calico-node-w6hpm                                        1/1     Running   0             28h
+kube-system          coredns-5c54f84c97-n4n8m                                 1/1     Running   0             28h
+kube-system          coredns-5c54f84c97-nntc4                                 1/1     Running   0             28h
+kube-system          dns-autoscaler-56cb45595c-c5l2v                          1/1     Running   0             28h
+kube-system          kube-apiserver-vm1                                       1/1     Running   0             28h
+kube-system          kube-controller-manager-vm1                              1/1     Running   2 (27h ago)   28h
+kube-system          kube-proxy-6mm9n                                         1/1     Running   0             28h
+kube-system          kube-proxy-b5vvd                                         1/1     Running   0             28h
+kube-system          kube-proxy-l649r                                         1/1     Running   0             28h
+kube-system          kube-scheduler-vm1                                       1/1     Running   2 (27h ago)   28h
+kube-system          nginx-proxy-vm2                                          1/1     Running   0             28h
+kube-system          nginx-proxy-vm3                                          1/1     Running   0             28h
+kube-system          nodelocaldns-c46hf                                       1/1     Running   0             28h
+kube-system          nodelocaldns-ffw74                                       1/1     Running   0             28h
+kube-system          nodelocaldns-r46tx                                       1/1     Running   0             28h
+local-path-storage   local-path-provisioner-7c8666cb46-6fqsg                  1/1     Running   0             12h
+monitoring           alertmanager-cluster-monitoring-kube-pr-alertmanager-0   2/2     Running   0             26h
+monitoring           cluster-monitoring-grafana-6ddc5bc476-bm6tp              3/3     Running   0             26h
+monitoring           cluster-monitoring-kube-pr-operator-6c8f574449-hj86d     1/1     Running   0             26h
+monitoring           cluster-monitoring-kube-state-metrics-5f6d8df69-hspzf    1/1     Running   0             25h
+monitoring           cluster-monitoring-prometheus-node-exporter-6ffxp        1/1     Running   0             26h
+monitoring           cluster-monitoring-prometheus-node-exporter-mcghj        1/1     Running   0             26h
+monitoring           cluster-monitoring-prometheus-node-exporter-tfpbk        1/1     Running   0             26h
+monitoring           prometheus-cluster-monitoring-kube-pr-prometheus-0       2/2     Running   0             26h
+postgres             sina-db-1                                                1/1     Running   0             12h
+postgres             sina-db-2                                                1/1     Running   0             11h

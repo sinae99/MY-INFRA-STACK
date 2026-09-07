@@ -1,0 +1,29 @@
+all:
+  hosts:
+    vm1:
+      ansible_host: 37.32.15.242
+      ip: 192.168.1.109
+      ansible_user: ubuntu
+    vm2:
+      ansible_host: 37.32.15.158
+      ip: 192.168.1.128
+      ansible_user: ubuntu
+    vm3:
+      ansible_host: 37.32.12.103
+      ip: 192.168.1.219
+      ansible_user: ubuntu
+  children:
+    kube_control_plane:
+      hosts:
+        vm1: {}
+    etcd:
+      hosts:
+        vm1: {}
+    kube_node:
+      hosts:
+        vm2: {}
+        vm3: {}
+    k8s_cluster:
+      children:
+        kube_control_plane: {}
+        kube_node: {}

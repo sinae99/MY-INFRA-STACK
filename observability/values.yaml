@@ -1,0 +1,52 @@
+# kube-prometheus-stack ---> only Prometheus + Grafana + Alertmanager
+# else is disabled.
+
+alertmanager:
+  enabled: true
+
+grafana:
+  enabled: true
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: 2d
+    scrapeInterval: 60s
+    evaluationInterval: 60s
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+
+prometheus-node-exporter:
+  enabled: true
+
+  
+kube-state-metrics:
+  enabled: false
+
+kubeApiServer:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+kubeProxy:
+  enabled: false
+
+kubelet:
+  enabled: false
+
+coreDns:
+  enabled: false
+
+kubeDns:
+  enabled: false
+
+defaultRules:
+  create: false

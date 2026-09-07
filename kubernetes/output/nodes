@@ -1,0 +1,4 @@
+NAME   STATUS   ROLES           AGE   VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+vm1    Ready    control-plane   28h   v1.32.8   192.168.1.109   <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   containerd://2.0.6
+vm2    Ready    <none>          28h   v1.32.8   192.168.1.128   <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   containerd://2.0.6
+vm3    Ready    <none>          28h   v1.32.8   192.168.1.219   <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   containerd://2.0.6

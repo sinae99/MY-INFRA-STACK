@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: geoapi
+  namespace: geoapi
+  labels:
+    app: geoapi
+spec:
+  selector:
+    matchLabels:
+      app: geoapi
+  namespaceSelector:
+    matchNames:
+      - geoapi
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
