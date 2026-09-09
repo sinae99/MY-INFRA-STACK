@@ -1,8 +1,8 @@
-## My Infra
+## My Infra Stack
 
-my full infrastructure-as-code platform lab
+my full iac platform lab
 
-Compute, networking, Kubernetes, observability, data services, application deployment, and CI/CD configuration and automation.
+Compute, networking, k8s, observability, data services, application deployment, and CICD configuration & automation
 
 ### core phases 
 
