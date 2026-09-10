@@ -37,5 +37,4 @@ kubectl apply -f api/k8s/secret-ghcr.yaml
 kubectl apply -f api/k8s/deployment.yaml
 kubectl apply -f api/k8s/service.yaml
 kubectl apply -f api/k8s/servicemonitor.yaml
-kubectl -n geoapi set image deploy/geoapi geoapi=ghcr.io/<your-github-user>/geoapi:<sha>
 ```
