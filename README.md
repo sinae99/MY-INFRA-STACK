@@ -1,8 +1,16 @@
 ## My Infra Stack
 
-my full iac platform lab
+my full iac platform lab configuration & automation
 
-Compute, networking, k8s, observability, data services, application deployment, and CICD configuration & automation
+`compute`, `networking`
+
+`k8s`
+
+`observability`
+
+`databases`, `application deployment`
+
+`CICD`
 
 ### core phases 
 
